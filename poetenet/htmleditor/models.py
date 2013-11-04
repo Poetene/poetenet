@@ -10,3 +10,10 @@ class Effect(models.Model):
 
     def get_code_in_base64(self):
         return base64.b64encode(self.code)
+
+    def __unicode__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return '/effect/' + str(self.pk) + \
+            (('-' + self.slug) if self.slug else '') + '/'

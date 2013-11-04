@@ -13,6 +13,24 @@
         <script src="{{ STATIC_URL }}js/esprima.js"></script>
 		<style>
 
+            .messages {
+                padding: 10px;
+            }
+
+            .messages div {
+                color: white;
+                padding: 10px;
+                margin: 10px;
+            }
+
+            .messages .error {
+                background: #C2624A;
+            }
+
+            .messages .success {
+                background: #5CBA91;
+            }
+
             #div_id_code {
                 display: none;
             }
@@ -172,13 +190,23 @@
 		</style>
 	</head>
 	<body>
+
 		<div id="preview"></div>
 		<div id="editor"></div>
 		<div id="toolbar"></div>
 		<div id="popup"></div>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
 		<script>
 
+
 			window.URL = window.URL || window.webkitURL;
+
 
 			// deflate
 
@@ -198,13 +226,7 @@
 
 			var defaultCode = RawDeflate.inflate( decode( 'dVRdT9swFH0uv+KuewlTcAJSxdQGpK1042FoCJCmPbr2bWOW2J3t9APEf5/tOFUjuihKHJ97zz33wyk+3PycPv2+n0Fp6+r6pGhfg6JEyt17UNRoKbCSaoP2atjYxdnnYQCM3VXoV4O54jt49avBnLI/S60ayc+YqpQew8dFuCYBrqleCjmGvP1Ua9SLSm3GUArOUYbdN0+edexFFpUUPkobmGmxsmA0uxqW1q7GWca4fDaEVarhi4pqJEzVGX2m26wSc5PZUiOSZ5Pp0WX8qIV0G8NrFynQHTBfn3gZa6qB0Ro1TcEwlJiCRslRo550+BKVK4/epVBTi1rQyq3QlJM9g5DCwhUsGsmsUBKSU1eokHtH5lCJG3i6fZjNyJTKNTUPEUpOJz1T4lrwKF4wgY2QXG2IkBL1L8Ftmfa2blEsSwvRnSvW1Cgt8RUkdLVydNNSVDzZZ0S4qmcVeivvFdza5Hvy7lGbFbpM1jgNaAKXo/S9GsiOyEnh3N15nne62gBkpYzwtSEvLtYoz2P4UPNe9Ee/k3Tyutr369fM8XsEErjI83T/6KJ2ner53bmmfaVGsLuIJvAKcYDzbR4un6fGhXaqx2B1gwcbP4Tj8pmP4QLe9iX0s/AuTnJkbDpxIWlCuWtN8I1Eb/t5olJ4n/+N1N8Gjf0SbBz0zUtL9j6HqohWNtiQreO6cTCRauOoPkFOXLKjyRHT3THT80l/nkm7SLpDE8eol4k/FXG4o7jY1oPTWGTtgXc/AP9L+gc=' ));
 
-            var documents = [ { filename: 'Untitled', filetype: 'text/plain', autoupdate: true, code: {% if effect  %}decode('{{ effect.get_code_in_base64  }}'){% else %} defaultCode {% endif %} } ];
-
-			if ( localStorage.codeeditor !== undefined ) {
-
-				documents = JSON.parse( localStorage.codeeditor );
-
-			}
+            var documents = [ { filename: 'Untitled', filetype: 'text/plain', autoupdate: true, code: {% if effect  %}decode('{{ new_effect.get_code_in_base64  }}'){% else %} defaultCode {% endif %} } ];
 
 			if ( window.location.hash ) {
 
@@ -245,7 +267,6 @@
 
 			editor.on( 'change', function() {
 
-				buttonSave.style.display = '';
 				buttonDownload.style.display = 'none';
 
 				if ( documents[ 0 ].autoupdate === false ) return;
@@ -275,8 +296,6 @@
 				event.stopPropagation();
 
 				documents[ 0 ].autoupdate = documents[ 0 ].autoupdate === false;
-
-				localStorage.codeeditor = JSON.stringify( documents );
 
 			}, false );
 			buttonUpdate.appendChild( checkbox );
@@ -315,16 +334,6 @@
 			menu.style.display = 'none';
 			toolbar.appendChild( menu );
 
-			var buttonSave = document.createElement( 'button' );
-			buttonSave.className = 'button';
-			buttonSave.textContent = 'save';
-			buttonSave.addEventListener( 'click', function ( event ) {
-
-				save();
-
-			}, false );
-			menu.appendChild( buttonSave );
-
 			var buttonDownload = document.createElement( 'a' );
 			buttonDownload.className = 'button';
 			buttonDownload.style.display = 'none';
@@ -337,7 +346,6 @@
 			buttonShare.textContent = 'share';
 			buttonShare.addEventListener( 'click', function ( event ) {
 
-                save();
 				var form = document.querySelector('.share-form');
 				var code_input = document.querySelector('#id_code');
                 code_input.type = 'hidden';
@@ -355,7 +363,6 @@
 				if ( confirm( 'Are you sure?' ) === true ) {
 
 					editor.setValue( defaultCode );
-					save();
 
 				}
 
@@ -485,13 +492,6 @@
 			}, false );
 
 			document.addEventListener( 'keydown', function ( event ) {
-
-				if ( event.keyCode === 83 && ( event.ctrlKey === true || event.metaKey === true ) ) {
-
-					event.preventDefault();
-					save();
-
-				}
 
 				if ( event.keyCode === 13 && ( event.ctrlKey === true || event.metaKey === true ) ) {
 
@@ -644,25 +644,6 @@
 
 			};
 
-			var save = function () {
-
-				documents[ 0 ].code = editor.getValue();
-
-				localStorage.codeeditor = JSON.stringify( documents );
-
-				var blob = new Blob( [ editor.getValue() ], { type: documents[ 0 ].filetype } );
-				var objectURL = URL.createObjectURL( blob );
-
-				buttonDownload.href = objectURL;
-
-				var date = new Date();
-				buttonDownload.download = documents[ 0 ].filename;
-
-				buttonSave.style.display = 'none';
-				buttonDownload.style.display = '';
-
-			};
-
 			var toggle = function () {
 
 				if ( element.style.display === '' ) {
@@ -687,12 +668,17 @@
 
 			update();
 
+        {% if messages %}
+            popup.set(document.querySelector('.messages'));
+            popup.show();
+        {% endif %}
+
 		</script>
 
         <form method=POST class=share-form>
             {% csrf_token %}
             {% load crispy_forms_tags %}
-            {{ effect_form | crispy }}
+            {{ form | crispy }}
             <button>Share!</button>
         </form>
 	</body>
