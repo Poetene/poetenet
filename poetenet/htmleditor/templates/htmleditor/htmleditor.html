@@ -12,6 +12,11 @@
         <script src="{{ STATIC_URL }}js/rawdeflate.js"></script>
         <script src="{{ STATIC_URL }}js/esprima.js"></script>
 		<style>
+
+            #div_id_code {
+                display: none;
+            }
+
 			@font-face {
 
 				font-family: 'inconsolata';
@@ -179,13 +184,13 @@
 
 			var decode = function ( string ) {
 
-				return RawDeflate.inflate( window.atob( string ) );
+				return window.atob( string );
 
 			};
 
 			var encode = function ( string ) {
 
-				return window.btoa( RawDeflate.deflate( string ) );
+				return window.btoa( string );
 
 			};
 
@@ -193,7 +198,7 @@
 
 			var defaultCode = decode( 'dVRdT9swFH0uv+KuewlTcAJSxdQGpK1042FoCJCmPbr2bWOW2J3t9APEf5/tOFUjuihKHJ97zz33wyk+3PycPv2+n0Fp6+r6pGhfg6JEyt17UNRoKbCSaoP2atjYxdnnYQCM3VXoV4O54jt49avBnLI/S60ayc+YqpQew8dFuCYBrqleCjmGvP1Ua9SLSm3GUArOUYbdN0+edexFFpUUPkobmGmxsmA0uxqW1q7GWca4fDaEVarhi4pqJEzVGX2m26wSc5PZUiOSZ5Pp0WX8qIV0G8NrFynQHTBfn3gZa6qB0Ro1TcEwlJiCRslRo550+BKVK4/epVBTi1rQyq3QlJM9g5DCwhUsGsmsUBKSU1eokHtH5lCJG3i6fZjNyJTKNTUPEUpOJz1T4lrwKF4wgY2QXG2IkBL1L8Ftmfa2blEsSwvRnSvW1Cgt8RUkdLVydNNSVDzZZ0S4qmcVeivvFdza5Hvy7lGbFbpM1jgNaAKXo/S9GsiOyEnh3N15nne62gBkpYzwtSEvLtYoz2P4UPNe9Ee/k3Tyutr369fM8XsEErjI83T/6KJ2ner53bmmfaVGsLuIJvAKcYDzbR4un6fGhXaqx2B1gwcbP4Tj8pmP4QLe9iX0s/AuTnJkbDpxIWlCuWtN8I1Eb/t5olJ4n/+N1N8Gjf0SbBz0zUtL9j6HqohWNtiQreO6cTCRauOoPkFOXLKjyRHT3THT80l/nkm7SLpDE8eol4k/FXG4o7jY1oPTWGTtgXc/AP9L+gc=' );
 
-			var documents = [ { filename: 'Untitled', filetype: 'text/plain', autoupdate: true, code: defaultCode } ];
+            var documents = [ { filename: 'Untitled', filetype: 'text/plain', autoupdate: true, code: {% if effect  %}decode('{{ effect.get_code_in_base64  }}'){% else %} defaultCode {% endif %} } ];
 
 			if ( localStorage.codeeditor !== undefined ) {
 
@@ -332,19 +337,13 @@
 			buttonShare.textContent = 'share';
 			buttonShare.addEventListener( 'click', function ( event ) {
 
-				var dom = document.createElement( 'input' );
-				dom.value = 'http://www.mrdoob.com/projects/htmleditor/#B/' + encode( editor.getValue() );
-				dom.style.width = '400px';
-				dom.style.padding = '5px';
-				dom.style.marginTop = '20px';
-				dom.style.border = '0px';
-
-				popup.set( dom );
+                save();
+				var form = document.querySelector('.share-form');
+				var code_input = document.querySelector('#id_code');
+                code_input.type = 'hidden';
+                code_input.value = editor.getValue();
+                popup.set(form);
 				popup.show();
-
-				dom.focus();
-				dom.select();
-
 			}, false );
 			menu.appendChild( buttonShare );
 
@@ -689,5 +688,12 @@
 			update();
 
 		</script>
+
+        <form method=POST class=share-form>
+            {% csrf_token %}
+            {% load crispy_forms_tags %}
+            {{ effect_form | crispy }}
+            <button>Share!</button>
+        </form>
 	</body>
 </html>

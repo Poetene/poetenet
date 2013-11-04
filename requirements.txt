@@ -1,2 +1,4 @@
 Django
 south
+fabric
+django-crispy-forms

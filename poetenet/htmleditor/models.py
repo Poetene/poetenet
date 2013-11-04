@@ -1,3 +1,4 @@
+import base64
 from django.db import models
 
 
@@ -6,3 +7,6 @@ class Effect(models.Model):
     name = models.CharField(max_length=200, default="")
     author = models.CharField(max_length=200, default="")
     code = models.TextField(default="")
+
+    def get_code_in_base64(self):
+        return base64.b64encode(self.code)
