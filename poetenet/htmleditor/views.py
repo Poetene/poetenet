@@ -40,3 +40,8 @@ def htmleditor(request, id='', slug=''):
         'new_effect': new_effect,
         'form': form,
     })
+
+
+def all(request):
+    return render(request, 'htmleditor/all.html',
+                  {'effects': Effect.objects.all()})

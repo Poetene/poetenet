@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<title>Poëtene.net</title>
+<header>
+Poëtene.net
+</header>
+<h1>All effects</h1>
+{% for effect in effects %}
+<a href={{ effect.get_absolute_url }}>{{ effect.name }}</a> by {{ effect.author }}
+{% endfor %}
+
+<style>
+* {
+    margin: 0 auto;
+}
+
+html, body {
+    font-family: sans-serif;
+}
+
+header {
+    background: #5cba91;
+    font-size: 60px;
+    padding: 40px;
+}
+</style>
