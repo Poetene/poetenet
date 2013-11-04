@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html manifest="editor.appcache">
+<html>
 	<head>
 		<title>html editor</title>
-		<link rel="stylesheet" href="js/codemirror/codemirror.css">
-		<script src="js/codemirror/codemirror.js"></script>
-		<script src="js/codemirror/mode/xml.js"></script>
-		<script src="js/codemirror/mode/javascript.js"></script>
-		<script src="js/codemirror/mode/css.js"></script>
-		<script src="js/codemirror/mode/htmlmixed.js"></script>
-		<script src="js/rawinflate.js"></script>
-		<script src="js/rawdeflate.js"></script>
-		<script src="js/esprima.js"></script>
+        <link rel="stylesheet" href="{{ STATIC_URL }}js/codemirror/codemirror.css">
+        <script src="{{ STATIC_URL }}js/codemirror/codemirror.js"></script>
+        <script src="{{ STATIC_URL }}js/codemirror/mode/xml.js"></script>
+        <script src="{{ STATIC_URL }}js/codemirror/mode/javascript.js"></script>
+        <script src="{{ STATIC_URL }}js/codemirror/mode/css.js"></script>
+        <script src="{{ STATIC_URL }}js/codemirror/mode/htmlmixed.js"></script>
+        <script src="{{ STATIC_URL }}js/rawinflate.js"></script>
+        <script src="{{ STATIC_URL }}js/rawdeflate.js"></script>
+        <script src="{{ STATIC_URL }}js/esprima.js"></script>
 		<style>
 			@font-face {
 
 				font-family: 'inconsolata';
-				src: url('files/inconsolata.woff') format('woff');
+                src: url('{{ STATIC_URL }}fonts/inconsolata.woff') format('woff');
 				font-weight: normal;
 				font-style: normal;
 
