@@ -283,6 +283,8 @@
 
 			editor.on( 'change', function() {
 
+                window.onbeforeunload = documents[0].code != editor.getValue() ? function(){ return "You have unsaved work!"; } : null;
+
 				buttonDownload.style.display = 'none';
 
 				if ( documents[ 0 ].autoupdate === false ) return;
