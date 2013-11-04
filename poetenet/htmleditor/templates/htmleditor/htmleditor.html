@@ -7,6 +7,7 @@
         <script src="{{ STATIC_URL }}js/codemirror/mode/xml.js"></script>
         <script src="{{ STATIC_URL }}js/codemirror/mode/javascript.js"></script>
         <script src="{{ STATIC_URL }}js/codemirror/mode/css.js"></script>
+        <script src="{{ STATIC_URL }}js/codemirror/keymap/vim.js"></script>
         <script src="{{ STATIC_URL }}js/codemirror/mode/htmlmixed.js"></script>
         <script src="{{ STATIC_URL }}js/rawinflate.js"></script>
         <script src="{{ STATIC_URL }}js/rawdeflate.js"></script>
@@ -212,6 +213,7 @@
         {% endif %}
 		<script>
 
+            var vimMode = window.location.hash == '#vim';
 
 			window.URL = window.URL || window.webkitURL;
 
@@ -267,9 +269,17 @@
 				matchBrackets: true,
 				indentWithTabs: true,
 				tabSize: 4,
-				indentUnit: 4
-
+				indentUnit: 4,
+                keyMap: vimMode ? 'vim' : 'default'
 			} );
+
+            editor.focus();
+
+            editor.isNormalMode = function() {
+                return this.state.vim && !(this.state.vim.insertMode ||
+                    this.state.vim.visualMode ||
+                    this.state.vim.visualLine);
+            }
 
 			editor.on( 'change', function() {
 
@@ -505,10 +515,11 @@
 
 				}
 
-				if ( event.keyCode === 27 ) {
-
+                var condition = vimMode ? event.keyCode == 9 && editor.isNormalMode()
+                                        : event.keyCode == 27;
+				if (condition) {
+                    event.preventDefault();
 					toggle();
-
 				}
 
 			}, false );
@@ -667,6 +678,7 @@
 					element.style.display = '';
 					buttonUpdate.style.display = '';
 					buttonShare.display = '';
+                    editor.focus();
 
 				}
 
