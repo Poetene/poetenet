@@ -36,7 +36,7 @@ class Site(object):
         self.run("./venv/bin/pip install -r requirements.txt")
 
     def restart(self):
-        self.run("touch pouetenet_uswgi.ini")
+        sudo("touch /etc/uwsgi/vassals/poetenet_uwsgi.ini")
 
 PROD = Site(
     dir='/home/prods/poetenet/',
