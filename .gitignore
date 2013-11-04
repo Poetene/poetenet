@@ -2,4 +2,4 @@
 *.db
 local.py
 venv/*
-static/*
+.*.swp
