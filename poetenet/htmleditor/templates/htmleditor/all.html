@@ -4,9 +4,13 @@
 Poëtene.net
 </header>
 <h1>All effects</h1>
+<ul class=all-effects>
 {% for effect in effects %}
-<a href={{ effect.get_absolute_url }}>{{ effect.name }}</a> by {{ effect.author }}
+<li>
+    <a href={{ effect.get_absolute_url }}>{{ effect.name }}</a> by {{ effect.author }}
+</li>
 {% endfor %}
+</ul>
 
 <style>
 * {
@@ -21,5 +25,19 @@ header {
     background: #5cba91;
     font-size: 60px;
     padding: 40px;
+    color: white;
+}
+h1 {
+    padding: 20px 40px;
+}
+.all-effects {
+    list-style-type: none;
+}
+.all-effects li {
+    padding: 5px 0;
+}
+.all-effects a {
+    font-weight: bold;
+    color: #2c3e50;
 }
 </style>
