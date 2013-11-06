@@ -695,11 +695,18 @@
 
 		</script>
 
-        <form method=POST class=share-form>
+        <form method=POST class=share-form id=share-form>
             {% csrf_token %}
             {% load crispy_forms_tags %}
             {{ form | crispy }}
             <button>Share!</button>
         </form>
+
+        <script>
+            document.getElementById('share-form').addEventListener('submit',
+            function(){
+                window.onbeforeunload = function(){};
+            });
+        </script>
 	</body>
 </html>
