@@ -1,4 +1,4 @@
-Django
-south
-fabric
-django-crispy-forms
+Django==1.5.5
+south==0.8.2
+fabric==1.8.0
+django-crispy-forms==1.4.0
