@@ -36,4 +36,4 @@ def htmleditor(request, id='', slug=''):
 
 def all(request):
     return render(request, 'htmleditor/all.html',
-                  {'effects': Effect.objects.all()})
+                  {'effects': Effect.objects.all().order_by('-pk')})
