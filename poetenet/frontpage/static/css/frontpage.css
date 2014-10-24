@@ -12,12 +12,12 @@ html {
 
 body{
     background: #5cba91;
-    height: 50%;
+    height: 30%;
 }
 
 div {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     margin: -80px 0 0 -260px;
     width: 400px;
