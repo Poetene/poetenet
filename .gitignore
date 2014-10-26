@@ -3,3 +3,6 @@
 local.py
 venv/*
 .*.swp
+*.iml
+.idea
+static/*
