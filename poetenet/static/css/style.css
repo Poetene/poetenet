@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
 }
 
 html {
@@ -19,30 +18,35 @@ body {
     background-image: url('../img/background.svg');
     background-attachment: fixed;
     height: 100%;
+    font-weight: 400;
+    font-size: 20px;
 }
 
-div {
+h1 {
+    font-weight: 300;
+    font-size: 60px;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+div.content {
     position: relative;
     margin: 40px auto;
     width: 90%;
     max-width: 500px;
-    font-size: 60px;
     padding: 40px 60px;
     background: rgba(255, 255, 255, 0.6);
-}
-
-h1 {
-    font-size: 30px;
-    margin-top: 30px;
 }
 
 a {
     text-decoration: none;
     color: #264C3A;
-    font-size: 20px;
     margin-top: 20px;
     display: block;
-    font-weight: 400;
 }
 
 a:hover {
@@ -50,12 +54,20 @@ a:hover {
 }
 
 @media only screen and (max-device-width: 480px) {
-    div {
+    div.content {
         font-size: 40px;
         padding: 40px 30px;
     }
 
     h1 {
+        font-size: 40px;
+    }
+
+    h2 {
         font-size: 20px;
+    }
+
+    body {
+        font-size: 13px;
     }
 }

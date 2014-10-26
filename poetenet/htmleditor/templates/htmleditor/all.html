@@ -1,47 +1,15 @@
 <!DOCTYPE html>
-<title>Poëtene.net</title>
-<header>
-<a href="/">Poëtene.net</a>
-</header>
-<h1>Alle demoer</h1>
-<ul class=all-effects>
-{% for effect in effects %}
-<li>
-    <a href={{ effect.get_absolute_url }}>{{ effect.name }}</a> av {{ effect.author }}
-</li>
-{% endfor %}
-</ul>
-
-<style>
-* {
-    margin: 0 auto;
-}
-
-html, body {
-    font-family: sans-serif;
-}
-
-header {
-    background: #5cba91;
-    font-size: 60px;
-    padding: 40px;
-    color: white;
-}
-header a {
-    color: white;
-    text-decoration: none;
-}
-h1 {
-    padding: 20px 40px;
-}
-.all-effects {
-    list-style-type: none;
-}
-.all-effects li {
-    padding: 5px 0;
-}
-.all-effects a {
-    font-weight: bold;
-    color: #2c3e50;
-}
-</style>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <link rel=stylesheet href={{ STATIC_URL }}css/style.css>
+  <title>Poëtene.net</title>
+</head>
+<body>
+<div class="content">
+  <h1>Poëtene.net</h1>
+  <h2>Alle demoer</h2>
+  {% for effect in effects %}
+  <a href={{ effect.get_absolute_url }}>{{ effect.name }} av {{ effect.author }}</a>
+  {% endfor %}
+</div>
+</body>
