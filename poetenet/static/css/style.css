@@ -53,6 +53,39 @@ a:hover {
     text-decoration: underline;
 }
 
+.intro {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.shaders {
+    list-style-type: none;
+}
+
+.shaders li {
+    float: left;
+    width: 28%;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 1% 2%;
+    padding: 1%;
+}
+.shaders li h2,
+.shaders li h2 a {
+    margin-top: 5px;
+    display: inline;
+}
+
+.shaders code {
+    font-family: monospace;
+}
+.shaders code::before {
+    content: "[";
+}
+.shaders code::after {
+    content: "]";
+}
+
 @media only screen and (max-device-width: 480px) {
     div.content {
         font-size: 40px;
@@ -69,5 +102,9 @@ a:hover {
 
     body {
         font-size: 13px;
+    }
+
+    .shaders li {
+        width: 90%;
     }
 }

@@ -7,5 +7,6 @@ urlpatterns = patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^effect/', include('poetenet.htmleditor.urls')),
+    url(r'^shaders/', include('poetenet.shaders.urls')),
     url(r'', include('poetenet.frontpage.urls')),
 )

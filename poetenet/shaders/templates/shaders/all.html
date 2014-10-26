@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+        <title>Shaders</title>
+        <link rel=stylesheet type=text/css href=/static/css/style.css>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="intro">
+            <h1><a href=/>Poëtene.net</a></h1>
+            <p>Dette er alle shaderene som er tilgjengelige på Poetene.net.</p>
+            <p>Velg en shader i koden din med <code>SHADERS.shadernavn</code></p>
+        </div>
+
+        <ul class=shaders>
+            {% for shader in shaders %}
+            <li>
+            <h2><a href={{shader.example}}>{{ shader.title }}</a></h2>
+            <code>{{shader.id}}</code>
+            <p>{{shader.description}}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

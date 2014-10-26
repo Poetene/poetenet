@@ -111,6 +111,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'poetenet.htmleditor',
     'poetenet.frontpage',
+    'poetenet.shaders',
     'django.contrib.admin',
     'south',
     'crispy_forms',
