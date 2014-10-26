@@ -12,7 +12,7 @@ class Effect(models.Model):
         return base64.b64encode(self.code)
 
     def __unicode__(self):
-        return self.name
+        return self.name + " by " + self.author
 
     def get_absolute_url(self):
         return '/effect/' + str(self.pk) + \
