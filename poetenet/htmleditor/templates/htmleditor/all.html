@@ -3,11 +3,11 @@
 <header>
 <a href="/">Poëtene.net</a>
 </header>
-<h1>All effects</h1>
+<h1>Alle demoer</h1>
 <ul class=all-effects>
 {% for effect in effects %}
 <li>
-    <a href={{ effect.get_absolute_url }}>{{ effect.name }}</a> by {{ effect.author }}
+    <a href={{ effect.get_absolute_url }}>{{ effect.name }}</a> av {{ effect.author }}
 </li>
 {% endfor %}
 </ul>
