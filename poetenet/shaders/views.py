@@ -18,13 +18,19 @@ def all(request):
             'title': 'Vignette',
             'id': 'vignette',
             'description': 'A vignette effect',
-            'example': '/effect/50-vignette/'
+            'example': '/effect/50-vignette/',
+            'properties': [
+                ('amount', 'How large is the vignette'),
+            ]
         },
         {
             'title': 'Multiply',
             'id': 'multiply',
             'description': 'Can be used for fading, and adjusting brightness',
-            'example': '/effect/45-multiply-shader/'
+            'example': '/effect/45-multiply-shader/',
+            'properties': [
+                ('amount', '0 means no multiply, and 1 is completely black')
+            ]
         },
         {
             'title': 'Glitch',
@@ -42,7 +48,10 @@ def all(request):
             'title': 'Letterbox',
             'id': 'letterbox',
             'description': 'Create slick widescreen effects',
-            'example': '/effect/46-letterbox-effect/'
+            'example': '/effect/46-letterbox-effect/',
+            'properties': [
+                ('ratio', 'Lower number means wider screen')
+            ]
         },
         {
             'title': 'Dot Screen',
