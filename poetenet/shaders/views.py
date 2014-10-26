@@ -7,7 +7,12 @@ def all(request):
             'title': 'Lens flare',
             'id': 'lensflare',
             'description': 'A Lens Flare effect',
-            'example': '/effect/47-lens-flare/'
+            'example': '/effect/47-lens-flare/',
+            'properties': [
+                ('sunY', 'The \'sun\' Y position'),
+                ('sunX', 'The \'sun\' X position'),
+                ('amount', 'The intensity of the effect')
+            ]
         },
         {
             'title': 'Vignette',

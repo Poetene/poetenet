@@ -85,6 +85,19 @@ a:hover {
 .shaders code::after {
     content: "]";
 }
+.shaders dl {
+    margin: 5px 10px;
+}
+.shaders dt,
+.shaders dd {
+    float: left;
+}
+.shaders dt {
+    clear: left;
+    margin-right: 5px;
+    font-weight: bold;
+    font-family: monospace;
+}
 
 @media only screen and (max-device-width: 480px) {
     div.content {
