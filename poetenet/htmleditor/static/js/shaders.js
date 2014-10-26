@@ -5,6 +5,14 @@ SHADERS={};SHADERS.colorgrading = {uniforms: {
     "blue": { "type": 'f', "value": 1}
 }
 ,vertexShader: "varying vec2 vUv;\n\nvoid main() {\n    vUv = uv;\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}\n",fragmentShader: "varying mediump vec2 vUv;\nuniform sampler2D tDiffuse;\nuniform float red;\nuniform float green;\nuniform float blue;\n\nvoid main() {\n    vec4 color = texture2D(tDiffuse, vUv);\n    gl_FragColor = vec4(color.r * red, color.g * green, color.b * blue , 1.);\n}\n"};
+SHADERS.dotscreen = {uniforms: {
+    "tDiffuse": { type: "t", value: null },
+        "tSize":    { type: "v2", value: null },
+        "center":   { type: "v2", value: null },
+        "angle":    { type: "f", value: 1.57 },
+        "scale":    { type: "f", value: 1.0 }
+}
+,vertexShader: "varying vec2 vUv;\n\nvoid main() {\n    vUv = uv;\n    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}\n",fragmentShader: "uniform vec2 center;\nuniform float angle;\nuniform float scale;\nuniform vec2 tSize;\nuniform sampler2D tDiffuse;\n\nvarying vec2 vUv;\n\nfloat pattern() {\n\n    float s = sin( angle ), c = cos(angle);\n    vec2 tex = vUv * tSize - center;\n    vec2 point = vec2( c * tex.x - s * tex.y, s * tex.x + c * tex.y ) * scale;\n\n    return ( sin( point.x ) * sin( point.y ) ) * 4.0;\n\n}\n\nvoid main() {\n    vec4 color = texture2D( tDiffuse, vUv );\n    float average = ( color.r + color.g + color.b ) / 3.0;\n    gl_FragColor = vec4( vec3( average * 10.0 - 5.0 + pattern() ), color.a );\n}\n"};
 SHADERS.example = {uniforms: {
     tDiffuse: { "type": "t", "value": null }
 }

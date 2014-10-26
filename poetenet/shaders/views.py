@@ -38,6 +38,12 @@ def all(request):
             'id': 'letterbox',
             'description': 'Create slick widescreen effects',
             'example': '/effect/46-letterbox-effect/'
+        },
+        {
+            'title': 'Dot Screen',
+            'id': 'dotscreen',
+            'description': 'Render the screen as lots of dots',
+            'example': '/effect/10-dot-screen-shader/'
         }
     ]
     return render(request, 'shaders/all.html', {'shaders': shaders})
