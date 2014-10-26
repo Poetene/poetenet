@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+  <meta charset=utf-8>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <link rel=stylesheet href={{ STATIC_URL }}css/style.css>
+  <title>Poëtene.net</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="content" style="max-width: 768px">
+  <h1>Poëtene.net</h1>
+
+  <h2>Skybox</h2>
+  <p>
+    En skybox er et sett av bilder (totalt 6). Hvert bilde er teksturen til en av flatene i kuben.
+    De ulike flatene er Left, Right, Up, Down, Front og Back.
+    <br><br>
+    Eksempel-url: <a href="{{ STATIC_URL }}res/skyboxes/SunSetLeft2048.jpg">{{ STATIC_URL }}res/skyboxes/SunSetLeft2048.jpg</a>
+    <br>
+    I dette eksempelet er prefikset "SunSet" og flaten er "Left".
+    <br><br>
+    Her er et sett med prefikser til skyboxer som du kan prøve:
+  </p>
+  <ul class="skyboxes">
+  {% for skybox in skyboxes %}
+    <li>
+      <img src="{{ STATIC_URL }}res/skyboxes/{{ skybox.prefix }}Left2048.jpg" class="skybox-image">
+      <span>{{ skybox.prefix }}</span>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+</body>

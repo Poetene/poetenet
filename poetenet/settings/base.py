@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     'poetenet.htmleditor',
     'poetenet.frontpage',
     'poetenet.shaders',
+    'poetenet.skyboxes',
     'django.contrib.admin',
     'south',
     'crispy_forms',
