@@ -21,5 +21,14 @@ def all(request):
         {
             'prefix': 'TropicalSunnyDay',
         },
+        {
+            'prefix': 'nwo512',
+        },
+        {
+            'prefix': 'delirious',
+        },
+        {
+            'prefix': 'stars',
+        }
     ]
     return render(request, 'skyboxes/all.html', {'skyboxes': skyboxes})

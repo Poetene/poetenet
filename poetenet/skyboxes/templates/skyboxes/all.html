@@ -15,16 +15,16 @@
     En skybox er et sett av bilder (totalt 6). Hvert bilde er teksturen til en av flatene i kuben.
     De ulike flatene er Left, Right, Up, Down, Front og Back.
     <br><br>
-    Eksempel-url: <a href="{{ STATIC_URL }}res/skyboxes/SunSetLeft2048.jpg">{{ STATIC_URL }}res/skyboxes/SunSetLeft2048.jpg</a>
+    Eksempel-url: <a href="{{ STATIC_URL }}res/skyboxes/SunSet_left.jpg">{{ STATIC_URL }}res/skyboxes/SunSet_left.jpg</a>
     <br>
-    I dette eksempelet er prefikset "SunSet" og flaten er "Left".
+    I dette eksempelet er prefikset "SunSet" og flaten er "left".
     <br><br>
     Her er et sett med prefikser til skyboxer som du kan prøve:
   </p>
   <ul class="skyboxes">
   {% for skybox in skyboxes %}
     <li>
-      <img src="{{ STATIC_URL }}res/skyboxes/{{ skybox.prefix }}Left2048.jpg" class="skybox-image">
+      <img src="{{ STATIC_URL }}res/skyboxes/{{ skybox.prefix }}_left.jpg" class="skybox-image">
       <span>{{ skybox.prefix }}</span>
     </li>
   {% endfor %}
