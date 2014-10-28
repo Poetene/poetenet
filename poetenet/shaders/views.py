@@ -36,13 +36,21 @@ def all(request):
             'title': 'Glitch',
             'id': 'glitch',
             'description': 'Fancy glitch effects',
-            'example': '/effect/48-glitch-shader-effect/'
+            'example': '/effect/48-glitch-shader-effect/',
+            'properties': [
+                ('time', 'Incrementing this value keeps varying the glitches'),
+                ('amount', 'How much glitch to apply'),
+            ]
         },
         {
             'title': 'Noise',
             'id': 'noise',
             'description': 'Noise',
-            'example': '/effect/49-noise-effect/'
+            'example': '/effect/49-noise-effect/',
+            'properties': [
+                ('time', 'Incrementing this value keeps varying the noise'),
+                ('amount', 'How much noise to apply'),
+            ]
         },
         {
             'title': 'Letterbox',
@@ -57,7 +65,10 @@ def all(request):
             'title': 'Dot Screen',
             'id': 'dotscreen',
             'description': 'Render the screen as lots of dots',
-            'example': '/effect/10-dot-screen-shader/'
+            'example': '/effect/10-dot-screen-shader/',
+            'properties': [
+                ('size', 'Size of the dots'),
+            ]
         }
     ]
     return render(request, 'shaders/all.html', {'shaders': shaders})
