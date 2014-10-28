@@ -74,7 +74,7 @@ def all(request):
             'title': 'Mandelbrot',
             'id': 'mandelbrot',
             'description': 'Mandelbrot fractal',
-            'example': '/effect/10-dot-screen-shader/',
+            'example': '/effect/55-mandelbrot-fractal/',
             'properties': [
                 ('time', 'Defines the zoom level'),
                 ('resolution', 'Resolution of the screen, THREE.Vector2()'),
