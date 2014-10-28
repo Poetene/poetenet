@@ -83,3 +83,11 @@ SHADERS.vignette = {uniforms: {
     amount: { type: 'f', value: 0}
 }
 ,vertexShader: "varying vec2 vUv;\n\nvoid main() {\n    vUv = uv;\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}\n",fragmentShader: "uniform sampler2D tDiffuse;\nuniform float amount;\nvarying vec2 vUv;\n\nvoid main() {\n    vec4 original = texture2D(tDiffuse, vUv);\n    float dist = length(vUv - vec2(0.5, 0.5));\n    dist = dist / 0.707;\n    if(dist < 0.) dist = 0.;\n    if(dist > 1.) dist = 1.;\n    dist = dist * dist * dist;\n    gl_FragColor = vec4(original.xyz * (1. - dist * amount), 1.);\n}\n"};
+SHADERS.mandelbrot = {uniforms: {
+    "time": { "type": "f", "value": null },
+    "resolution": { "type": "v2", "value": null },
+    "zoomCoordinate": { "type": "v2", "value": null },
+    "tExplosion": { "type": "t", "value": null }
+}
+,vertexShader: "varying vec2 vUv;\n\nvoid main() {\n    vUv = uv;\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}\n",fragmentShader: "uniform float time;\nuniform vec2 resolution;\nuniform vec2 zoomCoordinate;\nuniform sampler2D tExplosion;\n\nvarying vec2 vUv;\n\nconst int depth = 256;\n\nvec2 complexMult(vec2 a, vec2 b)\n{\n    float real = a.x * b.x - a.y * b.y;\n    float complex = a.y * b.x + a.x * b.y;\n    return vec2(real, complex);\n}\n\nfloat mandelbrot(vec2 c)\n{\n    vec2 z = vec2(0.0, 0.0);\n\n    int depth_reached = depth;\n    for (int i=0; i<depth; i++) {\n        if (dot(z, z) > 4.0) {\n            depth_reached = i;\n            break;\n        }\n        z = complexMult(z, z) + c;\n    }\n\n    return 1.0 - float(depth - depth_reached) / float(depth);\n}\n\n\nvoid main(void)\n{\n    vec2 uv = (gl_FragCoord.xy / resolution);\n    uv = vec2(uv.x * 3.5 - 2.5, uv.y * 2.0 - 1.0);\n\n    float zoom = pow(2.0, -time) * 3.5;\n    vec2 c = zoomCoordinate + uv * zoom;\n\n    gl_FragColor = texture2D(tExplosion, vec2(0.0, mandelbrot(c)));\n}\n"};
+
