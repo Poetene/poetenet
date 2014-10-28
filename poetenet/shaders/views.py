@@ -69,6 +69,18 @@ def all(request):
             'properties': [
                 ('size', 'Size of the dots'),
             ]
+        },
+        {
+            'title': 'Mandelbrot',
+            'id': 'mandelbrot',
+            'description': 'Mandelbrot fractal',
+            'example': '/effect/10-dot-screen-shader/',
+            'properties': [
+                ('time', 'Defines the zoom level'),
+                ('resolution', 'Resolution of the screen, THREE.Vector2()'),
+                ('zoomCoordinate', 'Center of screen. THREE.Vector2()'),
+                ('tExplosion', 'Texture used for coloring'),
+            ]
         }
     ]
     return render(request, 'shaders/all.html', {'shaders': shaders})
