@@ -26,6 +26,9 @@ h1 {
     font-weight: 300;
     font-size: 60px;
 }
+h1 a {
+    display: inline;
+}
 
 h2 {
     font-weight: 300;
@@ -135,4 +138,22 @@ img.skybox-image {
     height: 100px;
     vertical-align: middle;
     margin-right: 15px;
+}
+
+.add-effect {
+    border: 2px solid white;
+    border-radius: 3px;
+    color: white;
+    float: right;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 31px;
+    text-decoration: none !important;
+    padding: 3px;
+    margin: 0;
+}
+.add-effect:hover {
+    border-width: 5px;
+    padding: 0px;
 }
