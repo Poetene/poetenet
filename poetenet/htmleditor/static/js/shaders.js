@@ -47,8 +47,8 @@ SHADERS.noise = {uniforms: {
     tDiffuse: { "type": "t", "value": null },
     time: { "type": "f", "value": null },
     amount: { "type": "f", "value": 1},
-    width: { "type": "f", "value": 16},
-    height: { "type": "f", "value": 9}
+    width: { "type": "f", "value": 16*8},
+    height: { "type": "f", "value": 9*8}
 }
 ,vertexShader: "varying vec2 vUv;\n\nvoid main() {\n    vUv = uv;\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}\n",fragmentShader: "uniform float time;\nuniform float amount;\nuniform sampler2D tDiffuse;\nuniform float width;\nuniform float height;\nvarying vec2 vUv;\n\nfloat ranieyy(vec2 co) {\n    return fract(sin(dot(co.xy, vec2(12.9898,78.233))) * 43758.5453);\n}\n\nvoid main() {\n    vec4 colorInput = texture2D( tDiffuse, vUv );\n    vec2 pozz = vec2(floor(width*vUv.x)/width, floor(height*vUv.y)/height);\n    vec3 color = vec3(.1, 0.1, 0.1) + vec3(ranieyy(vec2(pozz+time/1009.0)));\n    gl_FragColor = colorInput*(1.0-amount)+amount*vec4(color, 0.1);\n}\n"};
 SHADERS.planetGlow = {uniforms: { 
