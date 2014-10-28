@@ -46,7 +46,7 @@ SHADERS.mountain = {uniforms: {
 SHADERS.noise = {uniforms: {
     tDiffuse: { "type": "t", "value": null },
     time: { "type": "f", "value": null },
-    amount: { "type": "f", "value": 1},
+    amount: { "type": "f", "value": 0.5},
     width: { "type": "f", "value": 16*8},
     height: { "type": "f", "value": 9*8}
 }
