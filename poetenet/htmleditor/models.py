@@ -1,5 +1,6 @@
 import base64
 from django.db import models
+from poetenet.settings import URL_PREFIX
 
 
 class Effect(models.Model):
@@ -15,5 +16,5 @@ class Effect(models.Model):
         return self.name + " by " + self.author
 
     def get_absolute_url(self):
-        return '/effect/' + str(self.pk) + \
+        return URL_PREFIX + '/effect/' + str(self.pk) + \
             (('-' + self.slug) if self.slug else '') + '/'
