@@ -51,7 +51,7 @@ STATIC_ROOT = 'static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = '/threejs/static/'
 
 BASE_DIR = 'poetenet'
 
@@ -150,3 +150,5 @@ LOGGING = {
 
 
 APPEND_SLASH = True
+
+URL_PREFIX = '/threejs'

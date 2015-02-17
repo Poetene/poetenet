@@ -6,8 +6,8 @@
 </head>
 <body>
 <div class="content">
-    <h1><a href="/">Poëtene.net</a></h1>
-  <h2>Alle demoer <a href="/effect/14-blank/" class="add-effect">Ny demo</a></h2>
+    <h1><a href="/threejs/">Poëtene.net</a></h1>
+  <h2>Alle demoer <a href="/threejs/effect/14-blank/" class="add-effect">Ny demo</a></h2>
   {% for effect in effects %}
   <a href={{ effect.get_absolute_url }}>{{ effect.name }} av {{ effect.author }}</a>
   {% endfor %}
