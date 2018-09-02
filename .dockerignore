@@ -1,0 +1,7 @@
+.gitattributes
+.git
+.idea
+venv
+poetenet/settings/local.py.example
+.editorconfig
+*.pyc
