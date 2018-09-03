@@ -22,7 +22,7 @@ def htmleditor(request, id='', slug=''):
             new_effect = form.save()
             messages.add_message(
                 request, messages.SUCCESS, 'Code was shared to ' +
-                'http://poetene.net' + new_effect.get_absolute_url())
+                'http://iver.io' + new_effect.get_absolute_url())
             return HttpResponseRedirect(new_effect.get_absolute_url())
         messages.error(request, 'Something went wrong. Code was not shared!')
         new_effect = Effect(code=form.cleaned_data['code'])

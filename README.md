@@ -20,4 +20,4 @@ make run
 Build the image: `sudo docker build -t poetenet --network=host .`  
 Start the server: `sudo docker run -it --rm --network host --name poetenet poetenet`  
 Start the server (background mode): `sudo docker run -d --network host --name poetenet poetenet`  
-Open bash in a temporary container: `sudo docker run -it --rm --network host --name poetenet --entrypoint /bin/bash poetenet`
+Open bash in a temporary container: `sudo docker run -it --rm --network host --entrypoint /bin/bash poetenet`
