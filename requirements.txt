@@ -1,4 +1,5 @@
-Django==1.5.5
+Django==1.5.12
 south==0.8.2
 fabric==1.8.0
 django-crispy-forms==1.4.0
+psycopg2==2.5.4
