@@ -8,24 +8,24 @@
 </head>
 <body>
 <div class="content" style="max-width: 768px">
-  <h1><a href="../">THREE.js-kurs</a></h1>
+  <h1><a href="../">THREE.js crash course</a></h1>
 
   <h2>Skybox</h2>
   <p>
-    En skybox er et sett av bilder (totalt 6). Hvert bilde er teksturen til en av flatene i kuben.
+    A skybox is a set of images (6 in total). Each image is the texture for one of the surfaces of the skybox cube.
     <br><br>
-    Eksempel-url:
+    Example URL:
     <a href="{{ STATIC_URL }}res/skyboxes/SunSet_left.jpg">{{ STATIC_URL }}res/skyboxes/SunSet_left.jpg</a>
     <br>
-    I dette eksempelet er prefikset "SunSet" og flaten er "left". Formatet på url'en er altså som følger:
+    In this example, the prefix is "SunSet" and the surface is "left". So the format of the URL is as follows:
     <br>
-    <a href="#">{{ STATIC_URL }}res/skyboxes/prefiks_flate.jpg</a>
+    <a href="#">{{ STATIC_URL }}res/skyboxes/prefix_surface.jpg</a>
     <br>
-    <b>flate</b><br>
-    De ulike flatene er "left", "right", "up", "down", "front", "back"
+    <b>surface</b><br>
+    The surfaces are "left", "right", "up", "down", "front", "back"
     <br><br>
-    <b>prefiks</b><br>
-    Her er et sett med prefikser til skyboxer som du kan prøve:
+    <b>prefix</b><br>
+    Here's a set of prefixes for skyboxes that you can use:
   </p>
   <ul class="skyboxes">
   {% for skybox in skyboxes %}
