@@ -9,6 +9,7 @@ base_urlpatterns = patterns(
     url(r'^effect/', include('poetenet.htmleditor.urls')),
     url(r'^shaders/', include('poetenet.shaders.urls')),
     url(r'^skyboxes/', include('poetenet.skyboxes.urls')),
+    url(r'^music_files/', include('poetenet.music_files.urls')),
     url(r'', include('poetenet.frontpage.urls')),
 )
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+  <meta charset=utf-8>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <link rel=stylesheet href={{ STATIC_URL }}css/style.css>
+  <title>Music files</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="content music-files" style="max-width: 768px">
+  <h1><a href="../">THREE.js Workshop</a></h1>
+
+  <h2>Music files</h2>
+  <p>
+    Here is a small selection of loopable music files that you can use in your demo:
+  </p>
+  <table>
+    <thead>
+    <tr>
+      <td>URL</td>
+      <td>Tempo</td>
+    </tr>
+    </thead>
+  {% for music_file in music_files %}
+    <tr>
+      <td><a href="{{ music_file.url }}">{{ music_file.url }}</a></td>
+      <td>{{ music_file.tempo }} bpm</td>
+    </tr>
+  {% endfor %}
+  </table>
+</div>
+</body>

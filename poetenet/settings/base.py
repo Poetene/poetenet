@@ -113,6 +113,7 @@ INSTALLED_APPS = (
     'poetenet.frontpage',
     'poetenet.shaders',
     'poetenet.skyboxes',
+    'poetenet.music_files',
     'django.contrib.admin',
     'south',
     'crispy_forms',
